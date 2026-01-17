@@ -35,7 +35,7 @@ const BUFUTravelers: React.FC = () => {
         <div className="w-full px-8">
           <h2 className="text-5xl font-bold text-center text-white mb-24">Our Fleet</h2>
           <div className="flex items-center justify-center">
-            <div className="max-w-4xl w-full">
+            <div className="max-w-5xl w-full">
               <div className="relative flex items-center justify-center gap-8">
                 {/* Previous Button */}
                 <button
@@ -91,13 +91,13 @@ const BUFUTravelers: React.FC = () => {
       <div className="h-20 bg-black"></div>
 
       {/* Fleet Details Section */}
-      <section className="py-40 bg-gradient-to-b from-black via-yellow-900 to-yellow-700 flex items-center justify-center">
+      <section className="py-24 bg-gradient-to-b from-black via-yellow-900 to-yellow-700 flex items-center justify-center">
         <div className="w-full px-8">
           <div className="flex items-center justify-center">
-            <div className="max-w-6xl w-full">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16 place-items-center">
+            <div className="max-w-5xl w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 {/* SUVs */}
-                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl w-80">
+                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl">
                   <div className="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg mb-8">
                     <Car className="text-white" size={48} />
                   </div>
