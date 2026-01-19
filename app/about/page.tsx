@@ -2,8 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 // Image paths for public folder
 const carImage = '/images/car1.png';
 const jumaImage = '/images/juma.png';
@@ -13,7 +11,6 @@ const About: React.FC = () => {
   return (
     
     <div className="min-h-screen bg-gradient-to-b from-yellow-900 to-black text-white p-4 md:p-6 lg:p-8 flex flex-col gap-y-20">
-      <Navbar />
 
       {/* Hero Section with Title */}
       <section className="py-16 bg-gradient-to-b from-yellow-800 to-yellow-900 rounded-lg mb-4  w-full justify-center flex">
@@ -159,7 +156,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

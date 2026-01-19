@@ -2,14 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 const AirportTransfers: React.FC = () => {
   return (
     /* Change 1: Added flex flex-col to ensure children can expand */
     <div className="min-h-screen bg-black text-white flex flex-col">
-      <Navbar />
 
       {/* Change 2: Wrapped sections in a main tag with flex-grow 
           This "pushes" the footer down to the bottom of the screen */}
@@ -72,7 +69,6 @@ const AirportTransfers: React.FC = () => {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 };

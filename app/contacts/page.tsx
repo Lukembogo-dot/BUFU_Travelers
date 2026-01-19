@@ -1,13 +1,10 @@
 'use client';
 
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#1a2421] text-white flex flex-col">
-      <Navbar />
 
       {/* 1. Hero Section - Wavy Title */}
       <section className="relative h-64 w-full flex items-center justify-center overflow-hidden">
@@ -129,7 +126,6 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

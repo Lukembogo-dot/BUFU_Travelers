@@ -2,14 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 const CorporateTravel: React.FC = () => {
   return (
     /* The Fix: flex flex-col and min-h-screen work together to fill the window */
     <div className="min-h-screen bg-black text-white flex flex-col">
-      <Navbar />
 
       {/* Wrapping content in a 'main' tag with 'flex-grow' pushes the footer down */}
       <main className="flex-grow">
@@ -72,7 +69,6 @@ const CorporateTravel: React.FC = () => {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 };

@@ -2,10 +2,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react'; // Added for the dropdown icon
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  // Separate state for mobile dropdown toggle
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const navLinks = [
     { name: 'About', href: '/about' },
@@ -20,31 +23,27 @@ export const Navigation = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-sm border-b border-orange-600/30">
-      <div className="flex items-center justify-between h-16">
-        {/* Left/Center - Centered container with logo and menu */}
+      <div className="flex items-center justify-between h-16 px-4 md:px-0">
         <div className="flex-1">
-          <div className="max-w-5xl mx-auto px-6 md:px-8 flex items-center justify-between">
+          <div className="max-w-5xl mx-auto w-full flex items-center justify-between">
             {/* Logo */}
             <Link
               href="/"
               className="text-2xl font-bold text-orange-500 hover:text-orange-400 transition"
             >
-              BUFU Travelers
+              BUFUTravelers
             </Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-10 text-sm font-semibold">
               <nav className="flex items-center gap-10">
-                {/* Services Dropdown */}
                 <div className="relative">
                   <button
                     onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                    className="relative text-white hover:text-orange-400 transition
-                               after:absolute after:-bottom-1 after:left-0 after:h-[2px]
-                               after:w-0 after:bg-orange-500 after:transition-all
-                               hover:after:w-full"
+                    className="flex items-center gap-1 text-white hover:text-orange-400 transition after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full"
                   >
                     Services
+                    <ChevronDown size={14} className={`transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {servicesDropdownOpen && (
@@ -54,9 +53,7 @@ export const Navigation = () => {
                           key={link.href}
                           href={link.href}
                           className={`block px-6 py-3 text-white hover:bg-orange-600/20 hover:text-orange-400 transition ${
-                            index < servicesLinks.length - 1
-                              ? 'border-b border-orange-600/20'
-                              : ''
+                            index < servicesLinks.length - 1 ? 'border-b border-orange-600/20' : ''
                           }`}
                           onClick={() => setServicesDropdownOpen(false)}
                         >
@@ -67,15 +64,11 @@ export const Navigation = () => {
                   )}
                 </div>
 
-                {/* Other links */}
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="relative text-white hover:text-orange-400 transition
-                               after:absolute after:-bottom-1 after:left-0 after:h-[2px]
-                               after:w-0 after:bg-orange-500 after:transition-all
-                               hover:after:w-full"
+                    className="relative text-white hover:text-orange-400 transition after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full"
                   >
                     {link.name}
                   </Link>
@@ -96,13 +89,10 @@ export const Navigation = () => {
           </div>
         </div>
 
-        {/* Right side - Book Us Button at edge */}
-        <div className="hidden md:flex pr-6">
+        <div className="hidden md:flex pr-4">
           <Link
             href="/contacts"
-            className="px-6 py-3 rounded bg-orange-500 text-black font-semibold 
-                       hover:bg-black hover:text-orange-500 hover:border hover:border-orange-500
-                       transition"
+            className="px-6 py-3 rounded bg-orange-500 text-black font-semibold hover:bg-black hover:text-orange-500 hover:border hover:border-orange-500 transition"
           >
             Book Us
           </Link>
@@ -111,28 +101,54 @@ export const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden flex flex-col space-y-4 pb-4 pt-2 px-6 text-sm font-medium">
-          <div className="text-white font-semibold">Services</div>
-          {servicesLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-white hover:text-orange-400 transition pl-4"
+        <nav className="md:hidden flex flex-col pb-4 pt-2 px-6 text-sm font-medium bg-black border-t border-orange-600/30">
+          {/* Mobile Services Dropdown Toggle */}
+          <div className="flex flex-col">
+            <button 
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              className="flex items-center justify-between text-white font-semibold py-3 border-b border-white/5"
             >
-              {link.name}
-            </Link>
-          ))}
+              Services
+              <ChevronDown size={18} className={`text-orange-500 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {mobileServicesOpen && (
+              <div className="flex flex-col bg-white/[0.03] rounded-lg mt-1">
+                {servicesLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setMobileServicesOpen(false);
+                    }}
+                    className="text-gray-300 hover:text-orange-400 transition pl-6 py-3 border-l-2 border-orange-500/20 hover:border-orange-500"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-white hover:text-orange-400 transition"
+              className="text-white hover:text-orange-400 transition py-4 border-b border-white/5"
             >
               {link.name}
             </Link>
           ))}
+          
+          <Link
+            href="/contacts"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="mt-4 px-6 py-3 rounded bg-orange-500 text-black font-bold text-center"
+          >
+            Book Us
+          </Link>
         </nav>
       )}
     </header>

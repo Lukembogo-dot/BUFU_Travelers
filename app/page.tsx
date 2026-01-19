@@ -3,9 +3,7 @@
 import React, { useState } from 'react';
 import { Car, Plane, Users, UserCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
-import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Footer from './components/Footer';
 
 const BUFUTravelers: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -24,10 +22,9 @@ const BUFUTravelers: React.FC = () => {
   const handleNext = () => {
     setCarouselIndex((prev) => (prev === fleetImages.length - 1 ? 0 : prev + 1));
   };
+
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navbar />
-      
       <Hero />
 
       {/* Fleet Images Section - Carousel */}
@@ -37,7 +34,6 @@ const BUFUTravelers: React.FC = () => {
           <div className="flex items-center justify-center">
             <div className="max-w-5xl w-full">
               <div className="relative flex items-center justify-center gap-8">
-                {/* Previous Button */}
                 <button
                   onClick={handlePrev}
                   className="flex-shrink-0 p-3 rounded-full bg-orange-600 hover:bg-orange-700 text-white transition-all shadow-lg"
@@ -46,7 +42,6 @@ const BUFUTravelers: React.FC = () => {
                   <ChevronLeft size={32} />
                 </button>
 
-                {/* Carousel Image */}
                 <div className="w-96 h-64 rounded-2xl shadow-2xl overflow-hidden">
                   <Image
                     src={fleetImages[carouselIndex].image}
@@ -57,7 +52,6 @@ const BUFUTravelers: React.FC = () => {
                   />
                 </div>
 
-                {/* Next Button */}
                 <button
                   onClick={handleNext}
                   className="flex-shrink-0 p-3 rounded-full bg-orange-600 hover:bg-orange-700 text-white transition-all shadow-lg"
@@ -67,7 +61,6 @@ const BUFUTravelers: React.FC = () => {
                 </button>
               </div>
 
-              {/* Carousel Info & Dots */}
               <div className="text-center mt-12">
                 <p className="text-2xl font-bold text-orange-400 mb-6">{fleetImages[carouselIndex].name}</p>
                 <div className="flex gap-3 justify-center">
@@ -76,9 +69,7 @@ const BUFUTravelers: React.FC = () => {
                       key={index}
                       onClick={() => setCarouselIndex(index)}
                       className={`h-3 rounded-full transition-all ${
-                        index === carouselIndex
-                          ? 'bg-orange-500 w-8'
-                          : 'bg-gray-600 w-3 hover:bg-gray-500'
+                        index === carouselIndex ? 'bg-orange-500 w-8' : 'bg-gray-600 w-3 hover:bg-gray-500'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
@@ -90,16 +81,16 @@ const BUFUTravelers: React.FC = () => {
         </div>
       </section>
 
-      {/* Spacing Section */}
       <div className="h-20 bg-black"></div>
 
-      {/* Fleet Details Section */}
+      {/* Fleet Details Section - FIXED MOBILE WIDTHS */}
       <section className="py-24 bg-gradient-to-b from-black via-yellow-900 to-yellow-700 flex items-center justify-center">
         <div className="w-full px-8">
           <div className="flex items-center justify-center">
             <div className="max-w-5xl w-full">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                {/* SUVs */}
+                
+                {/* SUVs - Master Template (No fixed width) */}
                 <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl">
                   <div className="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg mb-8">
                     <Car className="text-white" size={48} />
@@ -110,8 +101,8 @@ const BUFUTravelers: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Sedans */}
-                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl w-80">
+                {/* Sedans - REMOVED fixed w-80 */}
+                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl">
                   <div className="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg mb-8">
                     <Car className="text-white" size={48} />
                   </div>
@@ -121,8 +112,8 @@ const BUFUTravelers: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Minivans */}
-                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl w-80">
+                {/* Minivans - REMOVED fixed w-80 */}
+                <div className="bg-black/30 rounded-2xl p-12 flex flex-col items-center text-center border border-orange-500/30 shadow-xl">
                   <div className="w-24 h-24 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg mb-8">
                     <Car className="text-white" size={48} />
                   </div>
@@ -131,17 +122,17 @@ const BUFUTravelers: React.FC = () => {
                     We also provide a fleet of luxury minivans for larger groups. These vehicles are perfect for families or corporate groups, ensuring a smooth and enjoyable travel experience. (14 Seater and 16 Seater)
                   </p>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Spacing Section */}
       <div className="h-24 bg-yellow-700"></div>
 
-      {/* What We Really Do Section */}
-      <section className="py-40 bg-gradient-to-b  from-slate-800 to-slate-700 flex items-center justify-center">
+      {/* What We Really Do Section - REMOVED fixed w-80 */}
+      <section className="py-40 bg-gradient-to-b from-slate-800 to-slate-700 flex items-center justify-center">
         <div className="w-full px-8">
           <h2 className="text-5xl font-bold text-center mb-20 py-8 text-white">
             What We Really Do
@@ -149,60 +140,29 @@ const BUFUTravelers: React.FC = () => {
           <div className="flex items-center justify-center">
             <div className="max-w-7xl w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 place-items-center pt-32">
-                {/* Corporate Transport */}
-                <div className="border-3 border-orange-600 rounded-2xl p-10 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 shadow-xl text-center w-80 h-full flex flex-col justify-center items-center">
-                  <Users className="text-orange-500 mb-8 mx-auto" size={64} />
-                  <div className="text-orange-400 text-2xl font-bold mb-4">01</div>
-                  <h3 className="text-2xl font-bold text-teal-400 mb-8">Corporate Transport</h3>
-                  <ul className="text-base space-y-4 text-gray-200">
-                    <li>Executive Travel</li>
-                    <li>Meeting Transfers</li>
-                    <li>Corporate Events</li>
-                  </ul>
-                </div>
+                
+                {[
+                  { id: '01', title: 'Corporate Transport', icon: <Users size={64} />, items: ['Executive Travel', 'Meeting Transfers', 'Corporate Events'] },
+                  { id: '02', title: 'Airport Transfers', icon: <Plane size={64} />, items: ['Seamless Transfers', 'Reliable Service', 'Meet & Greet Service'] },
+                  { id: '03', title: 'Wedding & Event Transport', icon: <Users size={64} />, items: ['Wedding Transportation', 'Event Transportation', 'Graduation Transportation'] },
+                  { id: '04', title: 'Chauffeur Service', icon: <UserCircle size={64} />, items: ['Unmatched Service', 'Personalized Experience', 'Safety and Security'] }
+                ].map((service) => (
+                  <div key={service.id} className="border-3 border-orange-600 rounded-2xl p-10 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 shadow-xl text-center h-full flex flex-col justify-center items-center w-full max-w-sm">
+                    <div className="text-orange-500 mb-8 mx-auto">{service.icon}</div>
+                    <div className="text-orange-400 text-2xl font-bold mb-4">{service.id}</div>
+                    <h3 className="text-2xl font-bold text-teal-400 mb-8">{service.title}</h3>
+                    <ul className="text-base space-y-4 text-gray-200">
+                      {service.items.map(item => <li key={item}>{item}</li>)}
+                    </ul>
+                  </div>
+                ))}
 
-                {/* Airport Transfers */}
-                <div className="border-3 border-orange-600 rounded-2xl p-10 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 shadow-xl text-center w-80 h-full flex flex-col justify-center items-center">
-                  <Plane className="text-orange-500 mb-8 mx-auto" size={64} />
-                  <div className="text-orange-400 text-2xl font-bold mb-4">02</div>
-                  <h3 className="text-2xl font-bold text-teal-400 mb-8">Airport Transfers</h3>
-                  <ul className="text-base space-y-4 text-gray-200">
-                    <li>Seamless Transfers</li>
-                    <li>Reliable Service</li>
-                    <li>Meet & Greet Service</li>
-                  </ul>
-                </div>
-
-                {/* Wedding & Event Transport */}
-                <div className="border-3 border-orange-600 rounded-2xl p-10 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 shadow-xl text-center w-80 h-full flex flex-col justify-center items-center">
-                  <Users className="text-orange-500 mb-8 mx-auto" size={64} />
-                  <div className="text-orange-400 text-2xl font-bold mb-4">03</div>
-                  <h3 className="text-2xl font-bold text-teal-400 mb-8">Wedding & Event Transport</h3>
-                  <ul className="text-base space-y-4 text-gray-200">
-                    <li>Wedding Transportation</li>
-                    <li>Event Transportation</li>
-                    <li>Graduation Transportation</li>
-                  </ul>
-                </div>
-
-                {/* Chauffeur Service */}
-                <div className="border-3 border-orange-600 rounded-2xl p-10 bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 shadow-xl text-center w-80 h-full flex flex-col justify-center items-center">
-                  <UserCircle className="text-orange-500 mb-8 mx-auto" size={64} />
-                  <div className="text-orange-400 text-2xl font-bold mb-4">04</div>
-                  <h3 className="text-2xl font-bold text-teal-400 mb-8">Chauffeur Service</h3>
-                  <ul className="text-base space-y-4 text-gray-200">
-                    <li>Unmatched Service</li>
-                    <li>Personalized Experience</li>
-                    <li>Safety and Security</li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Spacing Section */}
       <div className="h-24 bg-slate-700"></div>
 
       {/* Reach Out To Us Section */}
@@ -227,7 +187,6 @@ const BUFUTravelers: React.FC = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };
