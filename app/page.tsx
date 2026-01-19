@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Car, Plane, Users, UserCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
@@ -10,11 +11,10 @@ const BUFUTravelers: React.FC = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   const fleetImages = [
-    { id: 1, gradient: 'from-green-900 to-teal-700', name: 'Luxury SUVs' },
-    { id: 2, gradient: 'from-gray-600 to-gray-800', name: 'Premium Sedans' },
-    { id: 3, gradient: 'from-red-900 to-orange-700', name: 'Comfortable Minivans' },
-    { id: 4, gradient: 'from-blue-900 to-blue-700', name: 'Executive Transport' },
-    { id: 5, gradient: 'from-purple-900 to-purple-700', name: 'Special Events' },
+    { id: 1, image: '/images/people.jpg', name: 'Cynical Services' },
+    { id: 2, image: '/images/wedding.jpg', name: 'Special Events' },
+    { id: 3, image: '/images/driver2.png', name: 'Comfortable Rides' },
+    { id: 4, image: '/images/inside.jpeg', name: 'Executive Transport' }
   ];
 
   const handlePrev = () => {
@@ -48,10 +48,13 @@ const BUFUTravelers: React.FC = () => {
 
                 {/* Carousel Image */}
                 <div className="w-96 h-64 rounded-2xl shadow-2xl overflow-hidden">
-                  <div
-                    className={`w-full h-full bg-gradient-to-br ${fleetImages[carouselIndex].gradient}`}
-                    style={{ transition: 'all 0.5s ease-in-out' }}
-                  ></div>
+                  <Image
+                    src={fleetImages[carouselIndex].image}
+                    alt={fleetImages[carouselIndex].name}
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={300}
+                  />
                 </div>
 
                 {/* Next Button */}

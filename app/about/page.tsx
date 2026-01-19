@@ -1,15 +1,18 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import carImage from '../images/car1.png';
-import jumaImage from '../images/juma.png';
+// Image paths for public folder
+const carImage = '/images/car1.png';
+const jumaImage = '/images/juma.png';
+const car2Image = '/images/car2.jpg';
 
 const About: React.FC = () => {
   return (
     
-    <div className="min-h-screen bg-black text-white p-4 md:p-6 lg:p-8 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-yellow-900 to-black text-white p-4 md:p-6 lg:p-8 flex flex-col gap-y-20">
       <Navbar />
 
       {/* Hero Section with Title */}
@@ -27,10 +30,12 @@ const About: React.FC = () => {
               {/* Left Side - Image */}
               <div className="relative p-8 md:p-12 flex items-center justify-center bg-yellow-900/50">
                 <div className="w-full h-full max-h-[500px]">
-                  <img 
-                    src={carImage.src} 
-                    alt="BUFU Travellers Vehicle" 
-                    className="w-full h-full object-contain rounded-lg shadow-2xl" 
+                  <Image
+                    src={carImage}
+                    alt="BUFU Travellers Vehicle"
+                    className="w-full h-full object-contain rounded-lg shadow-2xl"
+                    width={500}
+                    height={500}
                   />
                 </div>
               </div>
@@ -61,16 +66,19 @@ const About: React.FC = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-black rounded-lg shadow-2xl mb-4 justify-center flex w-full">
+     {/* Increased mt-20 to mt-40 for more whitespace */}
+<section className="mt-40 bg-black rounded-lg shadow-2xl mb-4 justify-center flex w-full">
         <div className="max-w-7xl mx-auto px-10 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Team Member 1 */}
             <div className="group">
               <div className="relative overflow-hidden rounded-t-lg mb-5 p-5">
-                <img
-                  src={jumaImage.src}
+                <Image
+                  src={jumaImage}
                   alt="Lowell Juma"
                   className="w-full h-80 object-cover"
+                  width={400}
+                  height={320}
                 />
               </div>
               <div className="bg-gradient-to-br from-yellow-800 to-orange-900 px-6 py-8 rounded-b-lg space-y-4">
@@ -84,10 +92,12 @@ const About: React.FC = () => {
             {/* Team Member 2 */}
             <div className="group">
               <div className="relative overflow-hidden rounded-t-lg mb-0">
-                <img
-                  src={jumaImage.src}
+                <Image
+                  src={jumaImage}
                   alt="Peejay"
                   className="w-full h-80 object-cover"
+                  width={400}
+                  height={320}
                 />
               </div>
               <div className="bg-gradient-to-br from-yellow-800 to-orange-900 p-6 rounded-b-lg">
@@ -101,10 +111,12 @@ const About: React.FC = () => {
             {/* Team Member 3 */}
             <div className="group">
               <div className="relative overflow-hidden rounded-t-lg mb-0">
-                <img
-                  src={jumaImage.src}
+                <Image
+                  src={jumaImage}
                   alt="Jane Doe"
                   className="w-full h-80 object-cover"
+                  width={400}
+                  height={320}
                 />
               </div>
               <div className="bg-gradient-to-br from-yellow-800 to-orange-900 p-6 rounded-b-lg">
@@ -118,27 +130,30 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Fixed Background Section */}
-      <section className="relative h-96 flex items-center justify-center overflow-hidden rounded-lg mb-4">
-        {/* Fixed Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed bg-gray-800"
-          style={{
-            backgroundImage: "url('/path/to/car-bottom.jpg')",
-            // If no image, use gradient: 
-            background: "linear-gradient(135deg, #1f2937 0%, #111827 100%)"
-          }}
-        >
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/60"></div>
+      {/* Fixed Background Section - Improved Overlay & Brightness */}
+      <section className="relative h-96 flex items-center justify-center overflow-hidden rounded-xl mb-8 group">
+        {/* Background Layer */}
+        <div className="absolute inset-0 bg-cover bg-center bg-fixed bg-gray-800">
+          <Image
+            src={car2Image}
+            alt="BUFU Travels Car"
+            className="w-full h-full object-cover"
+            width={1200}
+            height={400}
+          />
+          {/* Smoother, Multi-stop Thematic Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-yellow-900/40 to-black/20"></div>
+          
+          {/* Optional: Subtle blur effect to make text pop even more */}
+          <div className="absolute inset-0 backdrop-blur-[2px]"></div>
         </div>
 
         {/* Content over the fixed background */}
-        <div className="relative z-10 text-center px-8">
-          <h2 className="text-5xl font-bold text-white mb-4" style={{ fontFamily: 'cursive' }}>
+        <div className="relative z-10 text-center px-8 transition-transform duration-700 group-hover:scale-105">
+          <h2 className="text-6xl font-bold text-white mb-4 drop-shadow-2xl" style={{ fontFamily: 'cursive' }}>
             BUFU Travels
           </h2>
-          <p className="text-3xl text-gray-200" style={{ fontFamily: 'cursive' }}>
+          <p className="text-3xl text-orange-200 drop-shadow-lg" style={{ fontFamily: 'cursive' }}>
             Here For Your Convenience
           </p>
         </div>
